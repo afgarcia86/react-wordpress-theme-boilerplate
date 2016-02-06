@@ -19,11 +19,16 @@ var reload = browserSync.reload;
 gulp.task('sass', function () {
 
   // Compiles CSS
-  gulp.src('./assets/sass/**.scss')
-    .pipe(sass({includePaths: ['./assets/sass']}).on('error', sass.logError))
+  gulp.src('./app/assets/sass/**.scss')
+    .pipe(sass({includePaths: ['./app/assets/sass']}).on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./build/'))
     .pipe(reload({stream:true}))
+});
+
+gulp.task('images',function(){
+  gulp.src('assets/images/**')
+    .pipe(gulp.dest('./build/images'))
 });
 
 gulp.task('browser-sync', function() {
@@ -44,7 +49,7 @@ function handleErrors() {
 
 function buildScript(file, watch) {
   var props = {
-    entries: ['./components/' + file],
+    entries: ['./app/' + file],
     debug : true,
     cache: {},
     packageCache: {},
@@ -83,7 +88,7 @@ gulp.task('scripts', function() {
 });
 
 // run 'scripts' task first, then watch for future changes
-gulp.task('default', ['sass','scripts','browser-sync'], function() {
+gulp.task('default', ['images','sass','scripts','browser-sync'], function() {
   gulp.watch('css/**/*', ['sass']); // gulp watch for stylus changes
   return buildScript('app.js', true); // browserify watch for JS changes
 });
