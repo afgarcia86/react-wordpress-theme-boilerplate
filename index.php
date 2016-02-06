@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="app"></div>
-  <script src="./app.js"></script>
+  <script src="./build/app.js"></script>
   <!-- Start Bootstrap -->
   <script src="./app/assets/vendor/tether/dist/js/tether.min.js"></script>
   <script src="./app/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>

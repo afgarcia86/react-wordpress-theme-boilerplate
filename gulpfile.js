@@ -16,34 +16,20 @@ var buffer = require('vinyl-buffer');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
-/*
-  Sass Task
-*/
 gulp.task('sass', function () {
 
   // Compiles CSS
-  gulp.src('./app/assets/sass/**.scss')
-    .pipe(sass({includePaths: ['./app/assets/sass']}).on('error', sass.logError))
+  gulp.src('./assets/sass/**.scss')
+    .pipe(sass({includePaths: ['./assets/sass']}).on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(gulp.dest('./'))
     .pipe(reload({stream:true}))
 });
 
-/*
-  Images
-*/
-gulp.task('images',function(){
-  gulp.src('./app/assets/images/**')
-    .pipe(gulp.dest('./images'))
-});
-
-/*
-  Browser Sync
-*/
 gulp.task('browser-sync', function() {
   browserSync({
-    port: 7000,
-    proxy: "http://localhost:5000"
+    port: false,
+    proxy: "http://localhost/wordpress-react-starter"
   });
 });
 
@@ -58,7 +44,7 @@ function handleErrors() {
 
 function buildScript(file, watch) {
   var props = {
-    entries: ['./app/components/' + file],
+    entries: ['./components/' + file],
     debug : true,
     cache: {},
     packageCache: {},
@@ -73,7 +59,7 @@ function buildScript(file, watch) {
     return stream
       .on('error', handleErrors)
       .pipe(source(file))
-      .pipe(gulp.dest('./'))
+      .pipe(gulp.dest('./build/'))
       // If you also want to uglify it
       // .pipe(buffer())
       // .pipe(uglify())
@@ -93,11 +79,11 @@ function buildScript(file, watch) {
 }
 
 gulp.task('scripts', function() {
-  return buildScript('./app/app.js', false); // this will run once because we set watch to false
+  return buildScript('app.js', false); // this will run once because we set watch to false
 });
 
 // run 'scripts' task first, then watch for future changes
-gulp.task('default', ['images','sass','scripts','browser-sync'], function() {
+gulp.task('default', ['sass','scripts','browser-sync'], function() {
   gulp.watch('css/**/*', ['sass']); // gulp watch for stylus changes
-  return buildScript('./app/app.js', true); // browserify watch for JS changes
+  return buildScript('app.js', true); // browserify watch for JS changes
 });

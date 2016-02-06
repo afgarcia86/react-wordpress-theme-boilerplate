@@ -11,7 +11,7 @@ class Index extends React.Component{
 
   render() {
     return (
-       <DefaultLayout title={this.props.title}>{this.props.title}</DefaultLayout>
+       <DefaultLayout title={this.props.title}>{this.props.title} Test</DefaultLayout>
     )
   }
 }
