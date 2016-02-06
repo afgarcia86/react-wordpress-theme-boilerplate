@@ -1,0 +1,50 @@
+{
+  "name": "wordpress-react-starter",
+  "version": "0.0.1",
+  "description": "An Experimental WordPress theme using React, Bootstrap 4.0-beta (and other cool stuff)",
+  "license": "UNLICENSED",
+  "main": "app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {    
+    "autobind-decorator": "^1.3.3",
+    "babel": "5.8.23",
+    "babelify": "6.4.0",
+    "browser-sync": "2.9.11",
+    "browserify": "11.2.0",
+    "gulp": "3.9.0",
+    "gulp-autoprefixer": "3.1.0",
+    "gulp-express": "^0.3.0",
+    "gulp-notify": "2.2.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "2.1.1",
+    "gulp-uglify": "1.4.2",
+    "gulp-util": "3.0.7",
+    "install": "^0.4.2",
+    "npm": "^3.7.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-helmet": "^2.3.1",
+    "react-router": "v2.0.0-rc5",
+    "superagent": "^1.7.2",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.4.0"
+  },
+  "engines": {
+    "node": "4.2.2",
+    "npm": "2.14.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afgarcia86/wordpress-react-starter"
+  },
+  "keywords": [
+    "node",
+    "bootstrap",
+    "react"
+  ]
+}
