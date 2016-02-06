@@ -10,10 +10,10 @@
 </head>
 <body>
   <div id="app"></div>
-  <script src="./index.js"></script>
+  <script src="./app.js"></script>
   <!-- Start Bootstrap -->
-  <script src="/vendor/tether/dist/js/tether.min.js"></script>
-  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="./app/assets/vendor/tether/dist/js/tether.min.js"></script>
+  <script src="./app/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- End Bootstrap -->
 </body>
 </html>

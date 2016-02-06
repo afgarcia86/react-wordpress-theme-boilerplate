@@ -1,7 +1,7 @@
 {
   "name": "wordpress-react-starter",
   "version": "0.0.1",
-  "description": "An Experimental WordPress theme using React, Bootstrap 4.0-beta (and other cool stuff)",
+  "description": "An Experimental WordPress theme using React, Bootstrap 4 alpha (and other cool stuff)",
   "license": "UNLICENSED",
   "main": "app/app.js",
   "scripts": {
