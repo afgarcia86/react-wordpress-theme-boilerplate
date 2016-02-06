@@ -95,3 +95,9 @@ function buildScript(file, watch) {
 gulp.task('scripts', function() {
   return buildScript('./app/app.js', false); // this will run once because we set watch to false
 });
+
+// run 'scripts' task first, then watch for future changes
+gulp.task('default', ['images','sass','scripts','browser-sync'], function() {
+  gulp.watch('css/**/*', ['sass']); // gulp watch for stylus changes
+  return buildScript('./app/app.js', true); // browserify watch for JS changes
+});
