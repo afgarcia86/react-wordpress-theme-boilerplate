@@ -6,7 +6,7 @@ import DefaultLayout from './DefaultLayout'
 class NotFound extends React.Component{
 
   static defaultProps = {
-    title : '404'
+    title : 'Not Found'
   }
 
   render() {

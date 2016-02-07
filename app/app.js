@@ -7,7 +7,6 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
  */
 import Index from './components/Index'
 import Single from './components/Single'
-import NotFound from './components/NotFound'
 
 /*
  * Set Up Routes
@@ -15,8 +14,7 @@ import NotFound from './components/NotFound'
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Index}/>
-    <Route path="/post/:slug" component={Single}/>
-    <Route path="*" component={NotFound} />
+    <Route path=":slug" component={Single}/>
   </Router>
 )
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from "react-helmet"
 import autobind from 'autobind-decorator'
+import { Link } from 'react-router'
 
 @autobind
 class DefaultLayout extends React.Component {
@@ -15,14 +16,25 @@ class DefaultLayout extends React.Component {
         <Helmet
           title={this.props.title}
           titleTemplate="%s | Wordpress React Starter"
-        />        
-        <div id="wrapper" className={this.state.toggled ? "toggled" : ""}>
-          <div id="page-content-wrapper">            
-            <div className="container-fluid">
-              <h1>{this.props.title}</h1>
-              {this.props.children}
-            </div>
-          </div>
+        />
+        <nav className="navbar navbar-light bg-faded">
+          <ul className="nav navbar-nav">
+            <li className="nav-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/hello-world">Single Post</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/sample-page">Page</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/asdas">404</Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="container">
+          {this.props.children}
         </div>
       </div>
     )

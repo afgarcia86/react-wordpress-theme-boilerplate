@@ -33,7 +33,6 @@ gulp.task('images',function(){
 
 gulp.task('browser-sync', function() {
   browserSync({
-    port: false,
     proxy: "http://localhost/wordpress-react-starter"
   });
 });
