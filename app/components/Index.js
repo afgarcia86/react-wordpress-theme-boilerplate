@@ -1,19 +1,48 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import DefaultLayout from './DefaultLayout'
+import request from 'superagent'
 
 @autobind
-class Index extends React.Component{
+class Single extends React.Component{
 
-  static defaultProps = {
-    title : 'Index Page'
+	state = {
+		theTitle : '',
+		theContent : '',
+		notFound : false
+	}
+
+  componentWillMount(){
+
+  	var self = this;
+  	request.get('/wp-json/wp/v2/pages?filter[name]=home').end(function(err, res){
+  		if(err){
+  			console.log(err)
+  			return
+  		}
+  		var data = JSON.parse(res.text)
+  		if(data.length){
+	  		self.setState({
+	  			theTitle : data[0].title.rendered,
+	  			theContent : data[0].content.rendered
+	  		})
+	  	} else {
+	  		self.setState({
+	  			notFound : true
+	  		})
+	  	}
+	  });
+
   }
 
   render() {
     return (
-       <DefaultLayout title={this.props.title}>{this.props.title}</DefaultLayout>
+      <DefaultLayout title={this.state.theTitle}>
+       	<h1>{this.state.theTitle}</h1>
+       	<div dangerouslySetInnerHTML={{__html: this.state.theContent }} />      	
+      </DefaultLayout>
     )
   }
 }
 
-export default Index
+export default Single

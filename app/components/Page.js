@@ -2,9 +2,10 @@ import React from 'react'
 import autobind from 'autobind-decorator'
 import DefaultLayout from './DefaultLayout'
 import request from 'superagent'
+import NotFound from './404'
 
 @autobind
-class Single extends React.Component{
+class Page extends React.Component{
 
 	state = {
 		theTitle : '',
@@ -12,10 +13,10 @@ class Single extends React.Component{
 		notFound : false
 	}
 
-  componentWillMount(){
+  componentDidMount(){
 
   	var self = this;
-  	request.get('/wp-json/wp/v2/posts?filter[name]='+this.props.params.slug).end(function(err, res){
+  	request.get('/wp-json/wp/v2/pages?filter[name]='+this.props.params.slug).end(function(err, res){
   		if(err){
   			console.log(err)
   			return
@@ -27,15 +28,19 @@ class Single extends React.Component{
 	  			theContent : data[0].content.rendered
 	  		})
 	  	} else {
-	  		self.setState({	  			
+	  		self.setState({
 	  			notFound : true
-	  		})
+	  		})	  		
 	  	}
 	  });
 
   }
 
   render() {
+  	if(this.state.notFound){
+  		return <NotFound />
+  	}
+
     return (
       <DefaultLayout title={this.state.theTitle}>
        	<h1>{this.state.theTitle}</h1>
@@ -45,4 +50,4 @@ class Single extends React.Component{
   }
 }
 
-export default Single
+export default Page

@@ -7,6 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
  */
 import Index from './components/Index'
 import Single from './components/Single'
+import Page from './components/Page'
 
 /*
  * Set Up Routes
@@ -14,7 +15,8 @@ import Single from './components/Single'
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={Index}/>
-    <Route path=":slug" component={Single}/>
+    <Route path=":slug" component={Page}/>
+    <Route path="blog/:slug" component={Single}/>
   </Router>
 )
 

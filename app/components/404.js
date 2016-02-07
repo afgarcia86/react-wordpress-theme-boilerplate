@@ -11,7 +11,9 @@ class NotFound extends React.Component{
 
   render() {
     return (
-       <DefaultLayout title={this.props.title}>{this.props.title}</DefaultLayout>
+      <DefaultLayout title={this.props.title}>
+       	<h1>{this.props.title}</h1>
+      </DefaultLayout>
     )
   }
 }

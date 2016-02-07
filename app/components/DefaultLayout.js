@@ -23,7 +23,7 @@ class DefaultLayout extends React.Component {
               <Link to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/hello-world">Single Post</Link>
+              <Link to="/blog/hello-world">Single Post</Link>
             </li>
             <li className="nav-item">
               <Link to="/sample-page">Page</Link>
