@@ -1,46 +1,32 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
-import DefaultLayout from './DefaultLayout'
-import request from 'superagent'
 
 @autobind
 class Single extends React.Component{
 
 	state = {
 		theTitle : '',
-		theContent : '',
-		notFound : false
+		theContent : ''
 	}
 
-  componentWillMount(){
+	componentDidMount(){
+  	this.getPostData()
+  }
 
-  	var self = this;
-  	request.get('/wp-json/wp/v2/pages?filter[name]=home').end(function(err, res){
-  		if(err){
-  			console.log(err)
-  			return
-  		}
-  		var data = JSON.parse(res.text)
-  		if(data.length){
-	  		self.setState({
-	  			theTitle : data[0].title.rendered,
-	  			theContent : data[0].content.rendered
-	  		})
-	  	} else {
-	  		self.setState({
-	  			notFound : true
-	  		})
-	  	}
-	  });
+  componentDidUpdate(){
+  	this.getPostData()
+  }
 
+  getPostData(){
+  	this.props.getPostData('/wp-json/wp/v2/pages?filter[name]=home')
   }
 
   render() {
     return (
-      <DefaultLayout title={this.state.theTitle}>
-       	<h1>{this.state.theTitle}</h1>
-       	<div dangerouslySetInnerHTML={{__html: this.state.theContent }} />      	
-      </DefaultLayout>
+      <div>
+       	<h1>{this.props.theTitle}</h1>
+       	<div dangerouslySetInnerHTML={{__html: this.props.theContent }} />      	
+      </div>
     )
   }
 }

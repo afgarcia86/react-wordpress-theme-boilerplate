@@ -1,16 +1,50 @@
 import React from 'react'
 import Helmet from "react-helmet"
 import autobind from 'autobind-decorator'
-import { Link } from 'react-router'
+import { Link, Router } from 'react-router'
+import request from 'superagent'
 
 @autobind
-class DefaultLayout extends React.Component {
+class Layout extends React.Component {
 
   static defaultProps = {
     title: ''
   }
 
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
+  state = {
+    theTitle : '',
+    theContent : ''
+  }
+
+  getPostData(requestUrl){
+    var self = this
+    request.get(requestUrl).end(function(err, res){
+      if(err){
+        console.log(err)
+        return
+      }
+      var data = JSON.parse(res.text)
+      if(data.length >= 1){
+        self.setState({
+          theTitle : data[0].title.rendered,
+          theContent : data[0].content.rendered
+        })
+      } else {
+        self.setState({
+          theTitle : 'Not Found',
+          theContent : 'hmm you better try something else'
+        })
+      }
+    });
+
+  }
+
   render() {
+
     return (
       <div id="defaultLayout" className="appWrapper">
         <Helmet
@@ -34,11 +68,11 @@ class DefaultLayout extends React.Component {
           </ul>
         </nav>
         <div className="container">
-          {this.props.children}
+          {React.cloneElement(this.props.children, { getPostData: this.getPostData, theTitle: this.state.theTitle, theContent: this.state.theContent })}
         </div>
       </div>
     )
   }
 }
 
-module.exports = DefaultLayout
+module.exports = Layout

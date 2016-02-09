@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 /*
  * Import Views
  */
+import Layout from './components/Layout'
 import Index from './components/Index'
 import Single from './components/Single'
 import Page from './components/Page'
@@ -14,9 +15,11 @@ import Page from './components/Page'
  */
 var routes = (
   <Router history={browserHistory}>
-    <Route path="/" component={Index}/>
-    <Route path=":slug" component={Page}/>
-    <Route path="blog/:slug" component={Single}/>
+  	<Route path="/" component={Layout}>
+	    <IndexRoute component={Index}/>
+	    <Route path=":slug" component={Page}/>
+	    <Route path="blog/:slug" component={Single}/>
+	  </Route>
   </Router>
 )
 
