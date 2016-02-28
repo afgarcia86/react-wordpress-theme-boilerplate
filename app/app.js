@@ -9,6 +9,7 @@ import wpData from './lib/wpData'
 import Index from './templates/Index'
 import Single from './templates/Single'
 import Page from './templates/Page'
+import NotFound from './templates/NotFound'
 
 /*
  * Set Up Routes
@@ -19,6 +20,7 @@ var routes = (
 	    <IndexRoute component={Index}/>
 	    <Route path=":slug" component={Page}/>
 	    <Route path="blog/:slug" component={Single}/>
+	    <Route path="*" component={NotFound}/>
 	  </Route>
   </Router>
 )

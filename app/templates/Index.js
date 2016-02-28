@@ -1,6 +1,10 @@
 // Packages
 import React from 'react'
 import autobind from 'autobind-decorator'
+import { Link } from 'react-router'
+
+// Functions
+import helpers from '../lib/helpers'
 
 // Views
 import Layout from './Layout'
@@ -37,7 +41,7 @@ class Index extends React.Component{
         {posts.map(function(post){
             return (
               <div key={post.id}>
-                <h2>{post.title.rendered}</h2>
+                <h2><Link to={helpers.stringReplace(post.link, 'http://l.wrs.com/')}>{post.title.rendered}</Link></h2>
                 <div dangerouslySetInnerHTML={{__html: post.content.rendered }} />     
               </div>
             )

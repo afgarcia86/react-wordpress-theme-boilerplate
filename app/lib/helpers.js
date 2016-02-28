@@ -5,5 +5,8 @@ module.exports = {
         return post.slug === slug
       }))
     }
-  }  
+  },
+  stringReplace(text, remove, replace) {
+    return text.replace(remove, (replace ? replace : ''))
+  }
 }

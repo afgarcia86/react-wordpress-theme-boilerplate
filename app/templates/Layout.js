@@ -2,7 +2,7 @@
 import React from 'react'
 import Helmet from "react-helmet"
 import autobind from 'autobind-decorator'
-import { Link, Router } from 'react-router'
+import { Link } from 'react-router'
 import request from 'superagent'
 
 // Functions
