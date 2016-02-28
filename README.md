@@ -1,9 +1,6 @@
-npm install
-npm start
-
 # WordPress React Starter Theme
 
-### This is just an expirament
+### This is mainly experimental 
 
 1. `npm install`
 2. `gulp`
