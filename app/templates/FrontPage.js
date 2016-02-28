@@ -10,22 +10,21 @@ import Layout from './Layout'
 import NotFound from './NotFound'
 
 @autobind
-class Page extends React.Component{
+class FrontPage extends React.Component{
 
   state = {
     page : null,
     notFound : false,
-    activeSlug : ''
+    activeSlug : 'home'
   }
 
   componentWillMount(){
     var self = this     
     if(self.props.pages.length){
-      self.getData(self.props.pages, self.props.params.slug, function(page){
+      self.getData(self.props.pages, 'home', function(page){
         self.setState({
           page : page,
-          notFound : false,
-          activeSlug : self.props.params.slug
+          notFound : false          
         })
       })
     }
@@ -33,12 +32,11 @@ class Page extends React.Component{
 
   componentWillUpdate(nextProps, nextState){
     var self = this   
-    if(nextProps.params.slug != self.props.params.slug || nextProps.pages != self.props.pages){
-      self.getData(nextProps.pages, nextProps.params.slug, function(page){
+    if(nextProps.pages !== self.props.pages){
+      self.getData(nextProps.pages, 'home', function(page){
         self.setState({
           page : page,
-          notFound : false,
-          activeSlug : nextProps.params.slug
+          notFound : false
         })
       })
     }
@@ -77,4 +75,4 @@ class Page extends React.Component{
   }
 }
 
-export default Page
+export default FrontPage

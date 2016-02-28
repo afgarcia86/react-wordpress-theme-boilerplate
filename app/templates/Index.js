@@ -13,7 +13,8 @@ import Layout from './Layout'
 class Index extends React.Component{
 
   state = {
-    posts : []
+    posts : [],
+    activeSlug: 'blog'
   }
 
   componentWillMount(){
@@ -35,17 +36,17 @@ class Index extends React.Component{
   }
 
   render() {
-    const { posts } = this.state
+    const { posts, activeSlug } = this.state
     return (
-      <Layout title="Index Page">
+      <Layout title="Index Page" headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
+        <h1>Index Page</h1>
         {posts.map(function(post){
-            return (
-              <div key={post.id}>
-                <h2><Link to={helpers.stringReplace(post.link, 'http://l.wrs.com/')}>{post.title.rendered}</Link></h2>
-                <div dangerouslySetInnerHTML={{__html: post.content.rendered }} />     
-              </div>
-            )
-          }
+          return (
+            <div key={post.id}>
+              <h2><Link to={helpers.stringReplace(post.link, 'http://l.wrs.com')}>{post.title.rendered}</Link></h2>
+              <div dangerouslySetInnerHTML={{__html: post.content.rendered }} />     
+            </div>
+          )}
         )}
       </Layout>
     )

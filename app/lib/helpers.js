@@ -8,5 +8,9 @@ module.exports = {
   },
   stringReplace(text, remove, replace) {
     return text.replace(remove, (replace ? replace : ''))
+  },
+  slugify(text) {
+    var text = text.toLowerCase()
+    return text.replace(/ /g, '-')
   }
 }

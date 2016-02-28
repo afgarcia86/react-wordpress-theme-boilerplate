@@ -8,6 +8,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import wpData from './lib/wpData'
 import Index from './templates/Index'
 import Single from './templates/Single'
+import FrontPage from './templates/FrontPage'
 import Page from './templates/Page'
 import NotFound from './templates/NotFound'
 
@@ -17,9 +18,12 @@ import NotFound from './templates/NotFound'
 var routes = (
   <Router history={browserHistory}>
   	<Route path="/" component={wpData}>
-	    <IndexRoute component={Index}/>
+  		<IndexRoute component={FrontPage}/>	    
+	    <Route path="blog">
+	    	<IndexRoute component={Index}/>
+	    	<Route path=":slug" component={Single}/>
+	    </Route>
 	    <Route path=":slug" component={Page}/>
-	    <Route path="blog/:slug" component={Single}/>
 	    <Route path="*" component={NotFound}/>
 	  </Route>
   </Router>

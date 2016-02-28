@@ -4,13 +4,15 @@ import autobind from 'autobind-decorator'
 
 // Functions
 import wpQuery from './wpQuery'
+import wpMenu from './wpMenu'
 
 @autobind
 class wpData extends React.Component {
 
   state = {
     posts: [],
-    pages: []
+    pages: [],
+    headerMenu: []
   }
 
   componentWillMount(){
@@ -25,14 +27,16 @@ class wpData extends React.Component {
         pages : pages
       })
     })
+    wpMenu.getMenu('header-menu', function(menuItems){
+      self.setState({
+        headerMenu : menuItems
+      })
+    })
   }  
 
   render() {
-    return (
-      <div>
-        {React.cloneElement(this.props.children, { posts: this.state.posts, pages: this.state.pages })}
-      </div>
-    )
+    const { posts, pages, headerMenu } = this.state
+    return React.cloneElement(this.props.children, { posts: posts, pages: pages, headerMenu: headerMenu })
   }
 }
 

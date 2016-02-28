@@ -12,12 +12,14 @@ import Layout from './Layout'
 class NotFound extends React.Component{
 
   static defaultProps = {
-    title: 'Not Found'
+    title: 'Not Found',
+    activeSlug: ''
   }  
   
-  render() {    
+  render() {
+    const { title, activeSlug, headerMenu } = this.props
     return (
-      <Layout title={this.props.title}>
+      <Layout title={title} headerMenu={headerMenu} activeSlug={activeSlug}>
         <h1>Not Found!</h1>
         <p>Sorry but we can't find what you are looking for.</p>
       </Layout>

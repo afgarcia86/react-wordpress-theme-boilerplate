@@ -14,13 +14,14 @@ class Single extends React.Component{
 
   state = {
     post : null,
-    notFound : false
+    notFound : false,
+    activeSlug : 'blog'
   }
 
   componentWillMount(){
     var self = this     
     if(self.props.posts.length){
-      self.getData(self.props.posts, this.props.params.slug, function(post){
+      self.getData(self.props.posts, self.props.params.slug, function(post){
         self.setState({
           post : post,
           notFound : false
@@ -55,14 +56,14 @@ class Single extends React.Component{
   }
 
   render() {
-    const { post, notFound } = this.state
+    const { post, notFound, activeSlug } = this.state
     if(notFound){
       return (
         <NotFound />
       )
     }
     return (
-      <Layout title={post ? post.title.rendered : ''}>
+      <Layout title={post ? post.title.rendered : ''} headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
         {post && (
           <div>
            	<h1>{post.title.rendered}</h1>
