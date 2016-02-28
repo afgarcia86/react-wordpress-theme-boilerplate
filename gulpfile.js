@@ -15,6 +15,7 @@ var buffer = require('vinyl-buffer');
 
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var historyApiFallback = require('connect-history-api-fallback');
 
 gulp.task('sass', function () {
 
@@ -33,7 +34,7 @@ gulp.task('images',function(){
 
 gulp.task('browser-sync', function() {
   browserSync({
-    proxy: "http://localhost/wordpress-react-starter"
+    proxy: "http://l.wrs.com"
   });
 });
 

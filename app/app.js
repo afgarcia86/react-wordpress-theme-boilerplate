@@ -5,17 +5,17 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 /*
  * Import Views
  */
-import Layout from './components/Layout'
-import Index from './components/Index'
-import Single from './components/Single'
-import Page from './components/Page'
+import wpData from './lib/wpData'
+import Index from './templates/Index'
+import Single from './templates/Single'
+import Page from './templates/Page'
 
 /*
  * Set Up Routes
  */
 var routes = (
   <Router history={browserHistory}>
-  	<Route path="/" component={Layout}>
+  	<Route path="/" component={wpData}>
 	    <IndexRoute component={Index}/>
 	    <Route path=":slug" component={Page}/>
 	    <Route path="blog/:slug" component={Single}/>

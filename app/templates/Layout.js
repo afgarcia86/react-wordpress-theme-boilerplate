@@ -1,46 +1,19 @@
+// Packages
 import React from 'react'
 import Helmet from "react-helmet"
 import autobind from 'autobind-decorator'
 import { Link, Router } from 'react-router'
 import request from 'superagent'
 
+// Functions
+import wpQuery from '../lib/wpQuery'
+import helpers from '../lib/helpers'
+
 @autobind
 class Layout extends React.Component {
 
   static defaultProps = {
     title: ''
-  }
-
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  }
-
-  state = {
-    theTitle : '',
-    theContent : ''
-  }
-
-  getPostData(requestUrl){
-    var self = this
-    request.get(requestUrl).end(function(err, res){
-      if(err){
-        console.log(err)
-        return
-      }
-      var data = JSON.parse(res.text)
-      if(data.length >= 1){
-        self.setState({
-          theTitle : data[0].title.rendered,
-          theContent : data[0].content.rendered
-        })
-      } else {
-        self.setState({
-          theTitle : 'Not Found',
-          theContent : 'hmm you better try something else'
-        })
-      }
-    });
-
   }
 
   render() {
@@ -60,7 +33,13 @@ class Layout extends React.Component {
               <Link to="/blog/hello-world">Single Post</Link>
             </li>
             <li className="nav-item">
+              <Link to="/blog/another-post">Another Post</Link>
+            </li>
+            <li className="nav-item">
               <Link to="/sample-page">Page</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/another-page">Another Page</Link>
             </li>
             <li className="nav-item">
               <Link to="/asdas">404</Link>
@@ -68,7 +47,7 @@ class Layout extends React.Component {
           </ul>
         </nav>
         <div className="container">
-          {React.cloneElement(this.props.children, { getPostData: this.getPostData, theTitle: this.state.theTitle, theContent: this.state.theContent })}
+          {this.props.children}
         </div>
       </div>
     )
