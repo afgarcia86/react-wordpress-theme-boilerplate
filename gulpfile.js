@@ -1,6 +1,5 @@
 var source = require('vinyl-source-stream');
 var gulp = require('gulp');
-var server = require('gulp-express');
 var gutil = require('gulp-util');
 var browserify = require('browserify');
 var babelify = require('babelify');
@@ -89,6 +88,6 @@ gulp.task('scripts', function() {
 
 // run 'scripts' task first, then watch for future changes
 gulp.task('default', ['images','sass','scripts','browser-sync'], function() {
-  gulp.watch('css/**/*', ['sass']); // gulp watch for stylus changes
+  gulp.watch('./app/assets/sass/**/*', ['sass']); // gulp watch for stylus changes
   return buildScript('app.js', true); // browserify watch for JS changes
 });
