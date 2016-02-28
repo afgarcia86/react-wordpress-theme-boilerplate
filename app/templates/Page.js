@@ -12,10 +12,6 @@ import NotFound from './NotFound'
 @autobind
 class Page extends React.Component{
 
-  static defaultProps = {
-    title: 'Page'
-  }
-
   state = {
     page : null,
     notFound : false
@@ -66,7 +62,7 @@ class Page extends React.Component{
       )
     }
     return (
-      <Layout title={this.props.title}>
+      <Layout title={page ? page.title.rendered : ''}>
         {page && (
           <div>
             <h1>{page.title.rendered}</h1>

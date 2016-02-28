@@ -8,10 +8,6 @@ import Layout from './Layout'
 @autobind
 class Index extends React.Component{
 
-  static defaultProps = {
-    title: 'Index'
-  }
-
   state = {
     posts : []
   }
@@ -37,7 +33,7 @@ class Index extends React.Component{
   render() {
     const { posts } = this.state
     return (
-      <Layout title={this.props.title}>
+      <Layout title="Index Page">
         {posts.map(function(post){
             return (
               <div key={post.id}>

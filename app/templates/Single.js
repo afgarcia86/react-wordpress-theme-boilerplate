@@ -12,10 +12,6 @@ import NotFound from './NotFound'
 @autobind
 class Single extends React.Component{
 
-  static defaultProps = {
-    title: 'Single'
-  }
-
   state = {
     post : null,
     notFound : false
@@ -66,7 +62,7 @@ class Single extends React.Component{
       )
     }
     return (
-      <Layout title={this.props.title}>
+      <Layout title={post ? post.title.rendered : ''}>
         {post && (
           <div>
            	<h1>{post.title.rendered}</h1>
