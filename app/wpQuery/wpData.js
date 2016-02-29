@@ -3,7 +3,9 @@ import React from 'react'
 import autobind from 'autobind-decorator'
 
 // Functions
-import wpQuery from './wpQuery'
+import wpPosts from './wpPosts'
+import wpPages from './wpPages'
+import wpUsers from './wpUsers'
 import wpMenu from './wpMenu'
 
 @autobind
@@ -18,17 +20,17 @@ class wpData extends React.Component {
 
   componentWillMount(){
     var self = this
-    wpQuery.getPosts(function(posts){
+    wpPosts.getPosts(function(posts){
       self.setState({
         posts : posts
       })
     })
-    wpQuery.getPages(function(pages){
+    wpPages.getPages(function(pages){
       self.setState({
         pages : pages
       })
     })
-    wpQuery.getUsers(function(users){
+    wpUsers.getUsers(function(users){
       self.setState({
         users : users
       })

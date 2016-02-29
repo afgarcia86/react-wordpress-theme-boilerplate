@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 /*
  * Import Views
  */
-import wpData from './lib/wpData'
+import wpData from './wpQuery/wpData'
 import Index from './templates/Index'
 import Single from './templates/Single'
 import FrontPage from './templates/FrontPage'
