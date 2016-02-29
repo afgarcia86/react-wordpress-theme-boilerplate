@@ -14,74 +14,37 @@ import NotFound from './NotFound'
 class Single extends React.Component{
 
   state = {
-    post : null,
-    notFound : false,
+    postData : null,
     activeSlug : 'blog'
   }
 
   componentWillMount(){
-    var self = this     
-    if(self.props.posts.length){
-      self.getData(self.props.posts, self.props.params.slug, function(post){
-        self.setState({
-          post : post,
-          notFound : false
-        })
-      })
+    if(this.props.posts.length){
+      helpers.getDataWithSlug(this, this.props.posts, this.props.params.slug)
     }
   }
 
   componentWillUpdate(nextProps, nextState){
-    var self = this   
-    if(nextProps.params.slug != self.props.params.slug || nextProps.posts != self.props.posts){
-      self.getData(nextProps.posts, nextProps.params.slug, function(post){
-        self.setState({
-          post : post,
-          notFound : false
-        })
-      })
+    if(nextProps.params.slug != this.props.params.slug || nextProps.posts != this.props.posts){
+      helpers.getDataWithSlug(this, nextProps.posts, nextProps.params.slug)
     }
   }
 
-  getData(posts, slug, callback){
-    var self = this
-    helpers.findBySlug(posts, slug, function(data){
-      if(!data){
-        self.setState({
-          notFound : true
-        })
-        return
-      }
-      if(callback) callback(data)
-    }) 
-  }
-
-  getUser(id){
-    var self = this
-    var userName
-    helpers.findById(self.props.users, id, function(user){
-      if(!user){
-        return
-      }
-      userName = user.name
-    })
-    return userName
-  }
-
   render() {
-    const { post, notFound, activeSlug } = this.state
+    const { users } = this.props
+    const { postData, notFound, activeSlug } = this.state
     if(notFound){
       return (
         <NotFound />
       )
     }
     return (
-      <Layout title={post ? post.title.rendered : ''} headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
-        {post && (
+      <Layout title={postData ? postData.title.rendered : ''} headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
+        {postData && (
           <div>
-           	<h1>{post.title.rendered}</h1>
-            <p>Posted {moment(post.date).format('LL')} by {this.getUser(post.author)}</p>
-           	<div dangerouslySetInnerHTML={{__html: post.content.rendered }} />    	
+           	<h1>{postData.title.rendered}</h1>
+            <p>Posted {moment(postData.date).format('LL')} by {helpers.getUser(users, postData.author)}</p>
+           	<div dangerouslySetInnerHTML={{__html: postData.content.rendered }} />    	
           </div>  
         )}
       </Layout>

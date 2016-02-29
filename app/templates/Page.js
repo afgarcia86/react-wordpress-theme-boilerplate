@@ -13,63 +13,37 @@ import NotFound from './NotFound'
 class Page extends React.Component{
 
   state = {
-    page : null,
-    notFound : false,
+    postData : null,
     activeSlug : ''
   }
 
   componentWillMount(){
-    var self = this     
-    if(self.props.pages.length){
-      self.getData(self.props.pages, self.props.params.slug, function(page){
-        self.setState({
-          page : page,
-          notFound : false,
-          activeSlug : self.props.params.slug
-        })
-      })
+    if(this.props.pages.length){
+      helpers.getDataWithSlug(this, this.props.pages, this.props.params.slug)
+      helpers.setActiveSlug(this, this.props.params.slug)
     }
   }
 
   componentWillUpdate(nextProps, nextState){
-    var self = this   
-    if(nextProps.params.slug != self.props.params.slug || nextProps.pages != self.props.pages){
-      self.getData(nextProps.pages, nextProps.params.slug, function(page){
-        self.setState({
-          page : page,
-          notFound : false,
-          activeSlug : nextProps.params.slug
-        })
-      })
+    if(nextProps.params.slug != this.props.params.slug || nextProps.pages != this.props.pages){
+      helpers.getDataWithSlug(this, nextProps.pages, nextProps.params.slug)
+      helpers.setActiveSlug(this, nextProps.params.slug)
     }
   }
 
-  getData(pages, slug, callback){
-    var self = this
-    helpers.findBySlug(pages, slug, function(data){
-      if(!data){
-        self.setState({
-          notFound : true
-        })
-        return
-      }
-      if(callback) callback(data)
-    }) 
-  }
-
   render() {
-    const { page, notFound, activeSlug } = this.state
+    const { postData, notFound, activeSlug } = this.state
     if(notFound){
       return (
         <NotFound />
       )
     }
     return (
-      <Layout title={page ? page.title.rendered : ''} headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
-        {page && (
+      <Layout title={postData ? postData.title.rendered : ''} headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
+        {postData && (
           <div>
-            <h1>{page.title.rendered}</h1>
-            <div dangerouslySetInnerHTML={{__html: page.content.rendered }} />      
+            <h1>{postData.title.rendered}</h1>
+            <div dangerouslySetInnerHTML={{__html: postData.content.rendered }} />      
           </div>  
         )}
       </Layout>
