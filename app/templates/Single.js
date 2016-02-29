@@ -1,6 +1,7 @@
 // Packages
 import React from 'react'
 import autobind from 'autobind-decorator'
+import moment from 'moment'
 
 // Functions
 import helpers from '../lib/helpers'
@@ -55,6 +56,18 @@ class Single extends React.Component{
     }) 
   }
 
+  getUser(id){
+    var self = this
+    var userName
+    helpers.findById(self.props.users, id, function(user){
+      if(!user){
+        return
+      }
+      userName = user.name
+    })
+    return userName
+  }
+
   render() {
     const { post, notFound, activeSlug } = this.state
     if(notFound){
@@ -67,6 +80,7 @@ class Single extends React.Component{
         {post && (
           <div>
            	<h1>{post.title.rendered}</h1>
+            <p>Posted {moment(post.date).format('LL')} by {this.getUser(post.author)}</p>
            	<div dangerouslySetInnerHTML={{__html: post.content.rendered }} />    	
           </div>  
         )}

@@ -12,6 +12,7 @@ class wpData extends React.Component {
   state = {
     posts: [],
     pages: [],
+    users: [],
     headerMenu: []
   }
 
@@ -27,6 +28,11 @@ class wpData extends React.Component {
         pages : pages
       })
     })
+    wpQuery.getUsers(function(users){
+      self.setState({
+        users : users
+      })
+    })
     wpMenu.getMenu('header-menu', function(menuItems){
       self.setState({
         headerMenu : menuItems
@@ -35,8 +41,8 @@ class wpData extends React.Component {
   }  
 
   render() {
-    const { posts, pages, headerMenu } = this.state
-    return React.cloneElement(this.props.children, { posts: posts, pages: pages, headerMenu: headerMenu })
+    const { posts, pages, users, headerMenu } = this.state
+    return React.cloneElement(this.props.children, { posts: posts, pages: pages, users: users, headerMenu: headerMenu })
   }
 }
 
