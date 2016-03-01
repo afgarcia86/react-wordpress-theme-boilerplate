@@ -44,7 +44,10 @@ class Single extends React.Component{
           <div>
            	<h1>{postData.title.rendered}</h1>
             <p>Posted {moment(postData.date).format('LL')} by {helpers.getUser(users, postData.author)}</p>
-           	<div dangerouslySetInnerHTML={{__html: postData.content.rendered }} />    	
+           	<div dangerouslySetInnerHTML={{__html: postData.content.rendered }} />
+            {postData.acf && (
+              postData.acf.test && (postData.acf.test)
+            )}
           </div>  
         )}
       </Layout>

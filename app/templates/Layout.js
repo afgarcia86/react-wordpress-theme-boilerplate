@@ -22,7 +22,7 @@ class Layout extends React.Component {
       <div id="defaultLayout" className="appWrapper">
         <Helmet
           title={title}
-          titleTemplate="%s | Wordpress React Starter"
+          titleTemplate="%s | React Wordpress Theme Boilerplate"
         />        
         <div className="container">
           <Header headerMenu={headerMenu} activeSlug={activeSlug} />

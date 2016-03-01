@@ -1,12 +1,20 @@
-# WordPress React Starter Theme
+# React WordPress Theme Boilerplate
 
-### This is mainly experimental 
+### This is mainly experimental
 
-1. `npm install`
-2. `gulp`
-3: Go!
+1. `$ npm install`
+1. `$ gulp`
+1. Go!
 
-### Required Plugins
+### Wordpress Plugin Dependencies
 
-- [WP REST API v2](https://wordpress.org/plugins/rest-api/)
-- [WP API Menus](https://wordpress.org/plugins/wp-api-menus/)
+| Plugin  | URL |
+|---------|-----|
+| WP REST API v2 | https://wordpress.org/plugins/rest-api/ |
+| WP API Menus | https://wordpress.org/plugins/wp-api-menus/ |
+| ACF to REST API | https://wordpress.org/plugins/acf-to-rest-api/ |
+| ACF | https://wordpress.org/plugins/advanced-custom-fields/ |
+
+### Live Demo Coming Soon
+
+[Live Demo Coming Soon](#)

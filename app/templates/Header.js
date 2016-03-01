@@ -18,11 +18,11 @@ class Header extends React.Component{
     return (
       <nav className="navbar navbar-light bg-faded">
         <ul className="nav navbar-nav">
-          {headerMenu.map(function(menuItem){
+          {headerMenu.map(function(menuItem, i){
             var url = helpers.stringReplace(menuItem.url, 'http://l.wrs.com')
             var slug = helpers.slugify(menuItem.title)
             return (
-              <li key={menuItem.id} className={activeSlug == slug ? "active nav-item" : "nav-item"}>
+              <li key={i} className={activeSlug == slug ? "active nav-item" : "nav-item"}>
                 <Link className="nav-link" to={url}>{menuItem.title}</Link>
               </li>
             )}
