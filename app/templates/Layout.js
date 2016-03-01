@@ -4,7 +4,6 @@ import Helmet from "react-helmet"
 import autobind from 'autobind-decorator'
 
 // Functions
-import wpQuery from '../lib/wpQuery'
 import helpers from '../lib/helpers'
 
 // Views
