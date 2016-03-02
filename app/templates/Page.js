@@ -8,6 +8,8 @@ import helpers from '../lib/helpers'
 // Views
 import Layout from './Layout'
 import NotFound from './NotFound'
+import StandardPage from './pages/StandardPage'
+import FormPage from './pages/FormPage'
 
 @autobind
 class Page extends React.Component{
@@ -40,12 +42,12 @@ class Page extends React.Component{
     }
     return (
       <Layout title={postData ? postData.title.rendered : ''} headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
-        {postData && (
-          <div>
-            <h1>{postData.title.rendered}</h1>
-            <div dangerouslySetInnerHTML={{__html: postData.content.rendered }} />      
-          </div>  
-        )}
+        {postData && (() => {
+          switch (postData.template) {
+            case "form.php" : return <FormPage postData={postData} />
+            default: return <StandardPage postData={postData} />
+          }
+        })()}
       </Layout>
     )
   }
