@@ -1,5 +1,3 @@
-<?php
-  get_header();
-  echo '<div id="app"></div>';
-  get_footer();
-?>
+<?php get_header(); ?>
+  <div id="app"></div>
+<?php get_footer(); ?>

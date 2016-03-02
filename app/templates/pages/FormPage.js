@@ -2,11 +2,27 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 
+// Functions
+import gravityForms from '../../wpQuery/gravityForms'
+
 @autobind
 class FormPage extends React.Component{
 
+  state = {
+    formData : null
+  }
+
   static props = {
     postData : {}
+  }
+
+  componentDidMount(){
+    var self = this
+    gravityForms.getForm(1, function(formData){
+      self.setState({
+        formData : formData
+      })
+    })
   }
 
   render() {
