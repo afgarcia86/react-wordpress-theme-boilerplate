@@ -3,7 +3,7 @@ import request from 'superagent'
 
 module.exports = {
   getUsers(callback) {
-    var url = 'http://l.wrs.com/wp-json/wp/v2/users/'
+    var url = '/wp-json/wp/v2/users/'
     return request.get(url).end(function(err, res){
       if(err){
         console.log(err)
@@ -13,7 +13,7 @@ module.exports = {
     })
   },
   getUser(id, callback) {
-    var url = 'http://l.wrs.com/wp-json/wp/v2/users/'+id
+    var url = '/wp-json/wp/v2/users/'+id
     return request.get(url).end(function(err, res){
       if(err){
         console.log(err)
