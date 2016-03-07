@@ -18,7 +18,7 @@ class FormPage extends React.Component{
       <div>
         <h1>{postData.title.rendered} - FORM!!</h1>
         <div dangerouslySetInnerHTML={{__html: postData.content.rendered }} />  
-        <Form id={1} />    
+        <Form id={1} showLabels={true} showTitle={false} />    
       </div>
     )
   }
