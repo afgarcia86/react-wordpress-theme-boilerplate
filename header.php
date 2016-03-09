@@ -16,8 +16,3 @@
   </script>
 </head>
 <body>
-<?php
-  // $form = GFAPI::get_form(1);
-  // $form_string = GFFormDisplay::get_form_init_scripts($form);
-  // var_dump($form_string);
-?>

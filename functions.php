@@ -41,16 +41,14 @@ function customQueryVars($vars) {
 add_filter('query_vars','customQueryVars');
  
 function getFormInitScripts() {
-  if(intval(get_query_var('getFormInitScripts')) == 1) {
-  	// $form = { id: 1 };
-  	// $scripts = GFFormDisplay::function get_form_init_scripts(1);
-  	// var_dump($scripts);
+  if(intval(get_query_var('getFormInitScripts')) != '') {
+  	require_once(GFCommon::get_base_path() . '/form_display.php');
+    $form = GFAPI::get_form( get_query_var('getFormInitScripts') );
+    $field_values = array(); // the array of parameter names and values if any fields are being populated
+    GFFormDisplay::register_form_init_scripts( $form, $field_values );
+    $form_string = GFFormDisplay::get_form_init_scripts( $form );
 
-  ?>
-<!-- function javascript_code() {
-...
-} -->
-<?php
+    echo strip_tags($form_string);
   exit;
   }
 }

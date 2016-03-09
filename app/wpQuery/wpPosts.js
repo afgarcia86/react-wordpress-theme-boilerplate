@@ -17,7 +17,9 @@ module.exports = {
         posts = res.body
       }      
       obj.setState({
-        posts: posts
+        posts: posts,
+        totalPosts: res.headers["x-wp-total"],
+        totalPages: res.headers["x-wp-totalpages"]
       })
       if(callback) callback()
     })

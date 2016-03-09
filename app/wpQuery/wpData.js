@@ -12,12 +12,14 @@ import wpMenu from './wpMenu'
 class wpData extends React.Component {
 
   state = {
+    pageNumber: 1,
+    showPosts: 1,
     posts: [],
+    totalPosts: 0,
+    totalPages: 0,
     pages: [],
     users: [],
-    headerMenu: [],
-    pageNumber: 1,
-    showPosts: 1
+    headerMenu: []
   }
 
   componentWillMount(){
@@ -28,13 +30,15 @@ class wpData extends React.Component {
     wpMenu.getMenu(this, 'headerMenu')
   }
 
-  changePage(direction = 'next', loadMore = false){
+  changePage(page, loadMore = false){
     const { showPosts } = this.state
     var pageNumber = this.state.pageNumber
-    if(direction == 'prev'){
+    if(page == 'prev'){
       pageNumber--
-    } else {
+    } else if(page == 'next') {
       pageNumber++
+    } else {
+      pageNumber = page
     }
     this.setState({ pageNumber: pageNumber}, function(){
       wpPosts.getPosts(this, showPosts, pageNumber, loadMore)
@@ -42,8 +46,7 @@ class wpData extends React.Component {
   }
 
   render() {
-    const { posts, pages, users, headerMenu } = this.state
-    return React.cloneElement(this.props.children, { posts: posts, pages: pages, users: users, headerMenu: headerMenu, changePage: this.changePage })
+    return React.cloneElement(this.props.children, { ...this.state, changePage: this.changePage })
   }
 }
 

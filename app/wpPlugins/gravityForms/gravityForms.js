@@ -27,9 +27,20 @@ module.exports = {
     	.end(function(err, res){
       if(err){
         console.log(err)
-      } else {
-        if(callback) callback(res.body.response)
+        return
       }
+      if(callback) callback(res.body.response)
+    })
+	},
+	getFormInitScripts(id){
+		var url = "?getFormInitScripts="+id
+    return request.get(url)
+    	.end(function(err, res){
+      if(err){
+        console.log(err)
+        return
+      }
+      return res.text
     })
 	},
 	submitForm(id, input_values, callback){
@@ -39,9 +50,9 @@ module.exports = {
     	.end(function(err, res){
       if(err){
         console.log(err)
-      } else {
-        if(callback) callback(res.body.response)
+        return
       }
+      if(callback) callback(res.body.response)
     })
 	},
 	translateFormClass(cssClass){

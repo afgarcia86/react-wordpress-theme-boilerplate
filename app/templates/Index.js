@@ -8,6 +8,7 @@ import helpers from '../lib/helpers'
 
 // Views
 import Layout from './Layout'
+import PostsNavigation from '../lib/PostsNavigation'
 
 @autobind
 class Index extends React.Component{
@@ -35,20 +36,9 @@ class Index extends React.Component{
     }
   }
 
-  nextPage(){
-    this.props.changePage('next', false)
-  }
-
-  prevPage(){
-    this.props.changePage('prev', false)
-  }
-
-  loadMore(){
-    this.props.changePage('next', true)
-  }
-
   render() {
     const { posts, activeSlug } = this.state
+    const { totalPages, totalPosts, pageNumber, showPosts, changePage } = this.props
     return (
       <Layout title="Index Page" headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
         <h1>Index Page</h1>
@@ -56,15 +46,19 @@ class Index extends React.Component{
           return (
             <div key={post.id}>
               <h2><Link to={helpers.stringReplace(post.link, 'http://l.wrs.com')}>{post.title.rendered}</Link></h2>
-              <div dangerouslySetInnerHTML={{__html: post.content.rendered }} />     
+              <div dangerouslySetInnerHTML={{__html: post.content.rendered }} />
             </div>
           )}
         )}
-        <button className="btn btn-primary" onClick={this.loadMore}>Load More</button>
-
-        <button className="btn btn-primary" onClick={this.nextPage}>Next Page</button>
-
-        <button className="btn btn-primary" onClick={this.prevPage}>Prev Page</button>
+        <PostsNavigation
+          layout="loadMore"
+          posts={posts}
+          changePage={changePage}
+          totalPages={totalPages}
+          totalPosts={totalPosts}
+          pageNumber={pageNumber}
+          showPosts={showPosts}
+        /> 
       </Layout>
     )
   }

@@ -1,0 +1,12 @@
+.postNavigationWrapper{
+	padding: 15px 0;
+	
+	.loading{
+		background-image: url('../assets/loading.svg');
+		background-size: 50px;
+		background-repeat: no-repeat;
+		background-position: center;
+		height: 50px;
+		margin: 15px 0;
+	}
+}
