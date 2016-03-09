@@ -8,10 +8,21 @@
 
 ### TODO
 
-1. wordpress paging
 1. wordpress search
+1. custom post types
 1. support for gravityforms conditional logic
 1. support for gravityforms paging
+
+## Boilerplate Supports
+
+- FrontPage
+- Index (blog posts page)
+- Pagination Layouts ( Next/Prev, Load More, «|1|2|3|»)
+- Single ( author, date)
+- Pages
+- Page Templates
+- Advanced Custom Fields
+- Gravity Forms
 
 ### Wordpress Plugin Dependencies
 
