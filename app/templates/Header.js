@@ -6,6 +6,9 @@ import { Link } from 'react-router'
 // Functions
 import helpers from '../lib/helpers'
 
+// Views
+import Search from '../lib/Search'
+
 @autobind
 class Header extends React.Component{
 
@@ -14,7 +17,7 @@ class Header extends React.Component{
   }
 
   render() {
-    const { headerMenu, activeSlug } = this.props
+    const { headerMenu, activeSlug, location } = this.props
     return (
       <nav className="navbar navbar-light bg-faded">
         <ul className="nav navbar-nav">
@@ -28,6 +31,7 @@ class Header extends React.Component{
             )}
           )}          
         </ul>
+        <Search query={location && location.query && (location.query.s)} />
       </nav>
     )
   }

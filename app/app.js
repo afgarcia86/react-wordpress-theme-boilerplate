@@ -9,6 +9,7 @@ import wpData from './wpQuery/wpData'
 import Index from './templates/Index'
 import Single from './templates/Single'
 import FrontPage from './templates/FrontPage'
+import SearchPage from './templates/SearchPage'
 import Page from './templates/Page'
 import NotFound from './templates/NotFound'
 
@@ -23,6 +24,7 @@ var routes = (
 	    	<IndexRoute component={Index}/>
 	    	<Route path=":slug" component={Single}/>
 	    </Route>
+	    <Route path="search" component={SearchPage}/>
 	    <Route path=":slug" component={Page}/>
 	    <Route path="*" component={NotFound}/>
 	  </Route>

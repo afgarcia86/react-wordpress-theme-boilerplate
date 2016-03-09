@@ -30,7 +30,7 @@ class wpData extends React.Component {
     wpMenu.getMenu(this, 'headerMenu')
   }
 
-  changePage(page, loadMore = false){
+  changePageNumber(page, loadMore = false){
     const { showPosts } = this.state
     var pageNumber = this.state.pageNumber
     if(page == 'prev'){
@@ -46,7 +46,7 @@ class wpData extends React.Component {
   }
 
   render() {
-    return React.cloneElement(this.props.children, { ...this.state, changePage: this.changePage })
+    return React.cloneElement(this.props.children, { ...this.state, changePageNumber: this.changePageNumber })
   }
 }
 

@@ -10,9 +10,8 @@ class PostsNavigation extends React.Component {
     pages: null
   }
 
-  static props = {
+  static defaultProps = {
     pageNumber: 1,
-    showPosts: 1,
     totalPosts: 0,
     totalPages: 0,
     layout: ''
@@ -20,9 +19,9 @@ class PostsNavigation extends React.Component {
 
   static PropTypes = {
     pageNumber: React.PropTypes.number.isRequired,
-    showPosts: React.PropTypes.number.isRequired,
     totalPosts: React.PropTypes.number.isRequired,
     totalPages: React.PropTypes.number.isRequired,
+    changePageNumber: React.PropTypes.func.isRequired,
     layout: React.PropTypes.string
   }
 
@@ -45,31 +44,35 @@ class PostsNavigation extends React.Component {
   }
 
   nextPage(){
-    this.props.changePage('next', false)
+    this.props.changePageNumber('next', false)
     this.setState({ loading: true })
   }
 
   prevPage(){
-    this.props.changePage('prev', false)
+    this.props.changePageNumber('prev', false)
     this.setState({ loading: true })
   }
 
   loadMore(){
-    this.props.changePage('next', true)
+    this.props.changePageNumber('next', true)
     this.setState({ loading: true })
   }
 
   getPage(event){
-    this.props.changePage(event.target.innerHTML, false)
+    this.props.changePageNumber(event.target.innerHTML, false)
     this.setState({ loading: true })
   }
 
   generatePages(totalPages){
-    var pages = []
-    for (var i = 0; i < totalPages; i++){
-      pages.push(i)
+    if(totalPages > 0){
+      var pages = []
+      for (var i = 0; i < totalPages; i++){
+        pages.push(i)
+      }
+      this.setState({ pages: pages })
+    } else {
+      this.setState({ pages: null })
     }
-    this.setState({ pages: pages })
   }
 
   render() {
@@ -85,11 +88,13 @@ class PostsNavigation extends React.Component {
           {loading && (
             <div className="loading"></div>
           )}
-          {!lastPage &&(
-            <div className="postNavigation">
-              <button className="btn btn-primary btn-block" onClick={loadMore}>Load More</button>
-            </div>
-          )}          
+          {pages && (
+            !lastPage &&(
+              <div className="postNavigation">
+                <button className="btn btn-primary btn-block" onClick={loadMore}>Load More</button>
+              </div>
+            )
+          )}
         </div>
       )
     }
@@ -129,16 +134,18 @@ class PostsNavigation extends React.Component {
         {loading && (
           <div className="loading"></div>
         )}
-        <div className="postNavigation text-xs-center">
-          <div className="btn-group">
-            {!lastPage && (
-              <button className="btn btn-secondary" onClick={nextPage}>&laquo; Older Posts</button>
-            )}
-            {!firstPage && (
-              <button className="btn btn-secondary" onClick={prevPage}>Newer Posts &raquo;</button>
-            )}
+        {pages && (
+          <div className="postNavigation text-xs-center">
+            <div className="btn-group">
+              {!lastPage && (
+                <button className="btn btn-secondary" onClick={nextPage}>&laquo; Older Posts</button>
+              )}
+              {!firstPage && (
+                <button className="btn btn-secondary" onClick={prevPage}>Newer Posts &raquo;</button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     )
   }

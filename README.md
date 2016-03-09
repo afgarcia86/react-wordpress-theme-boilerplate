@@ -8,8 +8,8 @@
 
 ### TODO
 
-1. wordpress search
-1. custom post types
+1. support custom post types
+1. support all GravityForms field types
 1. support for gravityforms conditional logic
 1. support for gravityforms paging
 
@@ -19,6 +19,7 @@
 - Index (blog posts page)
 - Pagination Layouts ( Next/Prev, Load More, «|1|2|3|»)
 - Single ( author, date)
+- Searchx
 - Pages
 - Page Templates
 - Advanced Custom Fields

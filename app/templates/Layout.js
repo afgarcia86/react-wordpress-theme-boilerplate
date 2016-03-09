@@ -17,7 +17,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children, title, headerMenu, activeSlug } = this.props
+    const { children, title, headerMenu, activeSlug, location } = this.props
     return (
       <div id="defaultLayout" className="appWrapper">
         <Helmet
@@ -25,7 +25,7 @@ class Layout extends React.Component {
           titleTemplate="%s | React Wordpress Theme Boilerplate"
         />        
         <div className="container">
-          <Header headerMenu={headerMenu} activeSlug={activeSlug} />
+          <Header headerMenu={headerMenu} activeSlug={activeSlug} location={location} />
           {children}
         </div>
       </div>

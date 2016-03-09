@@ -38,7 +38,7 @@ class Index extends React.Component{
 
   render() {
     const { posts, activeSlug } = this.state
-    const { totalPages, totalPosts, pageNumber, showPosts, changePage } = this.props
+    const { totalPages, totalPosts, pageNumber, showPosts, changePageNumber } = this.props
     return (
       <Layout title="Index Page" headerMenu={this.props.headerMenu} activeSlug={activeSlug}>
         <h1>Index Page</h1>
@@ -53,11 +53,10 @@ class Index extends React.Component{
         <PostsNavigation
           layout="loadMore"
           posts={posts}
-          changePage={changePage}
+          changePageNumber={changePageNumber}
           totalPages={totalPages}
           totalPosts={totalPosts}
           pageNumber={pageNumber}
-          showPosts={showPosts}
         /> 
       </Layout>
     )
