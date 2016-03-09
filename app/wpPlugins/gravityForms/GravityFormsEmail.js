@@ -8,7 +8,7 @@ import { Input } from 'formsy-react-components';
 import gravityForms from './gravityForms'
 
 @autobind
-class Gemail extends React.Component{
+class GravityFormsEmail extends React.Component{
 
   static defaultProps = {
     showLabel: true,
@@ -84,4 +84,4 @@ class Gemail extends React.Component{
   }
 }
 
-export default Gemail
+export default GravityFormsEmail

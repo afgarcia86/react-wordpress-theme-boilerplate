@@ -2,24 +2,30 @@
 import request from 'superagent'
 
 module.exports = {
-  getMenus(callback) {
+  getMenus(obj, callback) {
     var url = '/wp-json/wp-api-menus/v2/menus'
     return request.get(url).end(function(err, res){
       if(err){
         console.log(err)
-      } else {
-        if(callback) callback(JSON.parse(res.text))
+        return
       }
+      obj.setState({
+        menus: res.body
+      })
+      if(callback) callback()
     })
   },
-  getMenu(menuLocation, callback) {
+  getMenu(obj, menuLocation, callback) {
     var url = '/wp-json/wp-api-menus/v2/menu-locations/'+menuLocation
     return request.get(url).end(function(err, res){
       if(err){
         console.log(err)
-      } else {
-        if(callback) callback(JSON.parse(res.text))
+        return
       }
+      obj.setState({
+        [menuLocation]: res.body
+      })
+      if(callback) callback()
     })
   }
 }

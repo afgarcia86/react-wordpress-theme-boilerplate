@@ -9,7 +9,7 @@ import { Input } from 'formsy-react-components';
 import gravityForms from './gravityForms'
 
 @autobind
-class Gtext extends React.Component{
+class GravityFormsText extends React.Component{
 
   static defaultProps = {
     showLabel: true,
@@ -54,4 +54,4 @@ class Gtext extends React.Component{
   }
 }
 
-export default Gtext
+export default GravityFormsText

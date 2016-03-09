@@ -1,15 +1,15 @@
 // Packages
 import React from 'react'
 import autobind from 'autobind-decorator'
-import Formsy from 'formsy-react';
+import Formsy from 'formsy-react'
 
 // Functions
 import gravityForms from './gravityForms'
 
 // Fields
-import Gtext from './Gtext'
-import Gemail from './Gemail'
-import Gtextarea from './Gtextarea'
+import GravityFormsText from './GravityFormsText'
+import GravityFormsEmail from './GravityFormsEmail'
+import GravityFormsTextarea from './GravityFormsTextarea'
 
 // Views
 import Alert from './Alert'
@@ -43,7 +43,10 @@ class Form extends React.Component{
   componentDidMount(){
     var self = this
     const { id } = this.props
-    
+
+    console.log(theme_url)
+
+    // GravityForms JS
     if(typeof jQuery != undefined){
       if (typeof gf_global == 'undefined') var gf_global = {
         "gf_currency_config": {
@@ -187,11 +190,11 @@ class Form extends React.Component{
             <div className="row">
               {formData.fields.map(function(field){
                 if(field.type == 'text')
-                  return  <Gtext key={field.id} formID={id} field={field} layout={layout} showLabel={showLabels} validationMessage={validationMessages[field.id]} />
+                  return  <GravityFormsText key={field.id} formID={id} field={field} layout={layout} showLabel={showLabels} validationMessage={validationMessages[field.id]} />
                 if(field.type == 'email')
-                  return  <Gemail key={field.id} formID={id} field={field} layout={layout} showLabel={showLabels} validationMessage={validationMessages[field.id]} />
+                  return  <GravityFormsEmail key={field.id} formID={id} field={field} layout={layout} showLabel={showLabels} validationMessage={validationMessages[field.id]} />
                 else if(field.type == 'textarea')
-                  return <Gtextarea key={field.id} formID={id} field={field} layout={layout} showLabel={showLabels} validationMessage={validationMessages[field.id]} />
+                  return <GravityFormsTextarea key={field.id} formID={id} field={field} layout={layout} showLabel={showLabels} validationMessage={validationMessages[field.id]} />
               })}
             </div>
             <button id={"gform_submit_button_"+id} className="btn btn-primary" formNoValidate={true} type="submit">{formData.button.text}</button>

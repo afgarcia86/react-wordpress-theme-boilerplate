@@ -2,24 +2,37 @@
 import request from 'superagent'
 
 module.exports = {
-  getPosts(callback) {
-    var url = '/wp-json/wp/v2/posts'
+  getPosts(obj, showPosts = 1, page = 1, loadMore = false, callback) {
+    var url = '/wp-json/wp/v2/posts?per_page='+showPosts+'&page='+page
     return request.get(url).end(function(err, res){
       if(err){
         console.log(err)
-      } else {
-        if(callback) callback(JSON.parse(res.text))
+        return
       }
+      var posts
+      if(loadMore){
+        var oldPosts = obj.state.posts
+        posts = oldPosts.concat(res.body)
+      } else {
+        posts = res.body
+      }      
+      obj.setState({
+        posts: posts
+      })
+      if(callback) callback()
     })
   },
-  getPost(slug, callback) {
+  getPost(obj, slug, callback) {
     var url = '/wp-json/wp/v2/posts?filter[name]='+slug
     return request.get(url).end(function(err, res){
       if(err){
         console.log(err)
-      } else {
-        if(callback) callback(JSON.parse(res.text))
+        return
       }
+      obj.setState({
+        post: res.body
+      })
+      if(callback) callback()
     })
   }
 }

@@ -6,14 +6,28 @@
 1. `$ gulp`
 1. Go!
 
+### TODO
+
+1. wordpress paging
+1. wordpress search
+1. support for gravityforms conditional logic
+1. support for gravityforms paging
+
 ### Wordpress Plugin Dependencies
 
 | Plugin  | URL |
 |---------|-----|
 | WP REST API v2 | https://wordpress.org/plugins/rest-api/ |
 | WP API Menus | https://wordpress.org/plugins/wp-api-menus/ |
-| ACF to REST API | https://wordpress.org/plugins/acf-to-rest-api/ |
+| ACF to REST API (optional) | https://wordpress.org/plugins/acf-to-rest-api/ |
+
+
+### Plugins Supported (optioanl)
+
+| Plugin  | URL |
+|---------|-----|
 | ACF | https://wordpress.org/plugins/advanced-custom-fields/ |
+| GravityForms | http://www.gravityforms.com/ |
 
 ### Live Demo Coming Soon
 

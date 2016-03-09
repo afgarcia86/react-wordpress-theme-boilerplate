@@ -35,6 +35,18 @@ class Index extends React.Component{
     }
   }
 
+  nextPage(){
+    this.props.changePage('next', false)
+  }
+
+  prevPage(){
+    this.props.changePage('prev', false)
+  }
+
+  loadMore(){
+    this.props.changePage('next', true)
+  }
+
   render() {
     const { posts, activeSlug } = this.state
     return (
@@ -48,6 +60,11 @@ class Index extends React.Component{
             </div>
           )}
         )}
+        <button className="btn btn-primary" onClick={this.loadMore}>Load More</button>
+
+        <button className="btn btn-primary" onClick={this.nextPage}>Next Page</button>
+
+        <button className="btn btn-primary" onClick={this.prevPage}>Prev Page</button>
       </Layout>
     )
   }

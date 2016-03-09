@@ -8,7 +8,7 @@ import { Textarea } from 'formsy-react-components';
 import gravityForms from './gravityForms'
 
 @autobind
-class Gtextarea extends React.Component{
+class GravityFormsTextarea extends React.Component{
 
   static defaultProps = {
     showLabel: true,
@@ -52,4 +52,4 @@ class Gtextarea extends React.Component{
   }
 }
 
-export default Gtextarea
+export default GravityFormsTextarea

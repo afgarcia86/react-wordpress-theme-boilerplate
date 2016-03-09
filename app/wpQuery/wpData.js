@@ -15,36 +15,35 @@ class wpData extends React.Component {
     posts: [],
     pages: [],
     users: [],
-    headerMenu: []
+    headerMenu: [],
+    pageNumber: 1,
+    showPosts: 1
   }
 
   componentWillMount(){
-    var self = this
-    wpPosts.getPosts(function(posts){
-      self.setState({
-        posts : posts
-      })
+    const { showPosts, pageNumber } = this.state
+    wpPosts.getPosts(this, showPosts, pageNumber)
+    wpPages.getPages(this)
+    wpUsers.getUsers(this)
+    wpMenu.getMenu(this, 'headerMenu')
+  }
+
+  changePage(direction = 'next', loadMore = false){
+    const { showPosts } = this.state
+    var pageNumber = this.state.pageNumber
+    if(direction == 'prev'){
+      pageNumber--
+    } else {
+      pageNumber++
+    }
+    this.setState({ pageNumber: pageNumber}, function(){
+      wpPosts.getPosts(this, showPosts, pageNumber, loadMore)
     })
-    wpPages.getPages(function(pages){
-      self.setState({
-        pages : pages
-      })
-    })
-    wpUsers.getUsers(function(users){
-      self.setState({
-        users : users
-      })
-    })
-    wpMenu.getMenu('header-menu', function(menuItems){
-      self.setState({
-        headerMenu : menuItems
-      })
-    })
-  }  
+  }
 
   render() {
     const { posts, pages, users, headerMenu } = this.state
-    return React.cloneElement(this.props.children, { posts: posts, pages: pages, users: users, headerMenu: headerMenu })
+    return React.cloneElement(this.props.children, { posts: posts, pages: pages, users: users, headerMenu: headerMenu, changePage: this.changePage })
   }
 }
 
